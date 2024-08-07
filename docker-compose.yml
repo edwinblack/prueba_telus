@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  # sqlite docker compose?
+  # db:
+  #   image: drupalci/sqlite-3
+  #   volumes:
+  #     - .:/var/lib/sqlite
+
+
+  # sqlitebrowser:
+  #   image: linuxserver/sqlitebrowser
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - sqlite-container
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - TZ=UTC
+  #     - ENABLE_UWSGI=true
+  #   volumes:
+  #     - sqlite-data:/data/db
+  #   container_name: sqlitebrowser
+
+  python-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/usr/src/app
+    env_file:
+      - .env
+
+volumes:
+  sqlite-data:

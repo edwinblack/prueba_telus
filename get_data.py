@@ -1,0 +1,2 @@
+from external_requests.get_user_data import get_daily_user_data
+get_daily_user_data()
